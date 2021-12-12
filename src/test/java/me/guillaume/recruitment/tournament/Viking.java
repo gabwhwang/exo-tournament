@@ -9,8 +9,12 @@ public class Viking extends GameRole{
 
 
     @Override
-    public Viking equip(String buckler) {
-        return this;
+    public Viking equip(String equipName) {
+        return (Viking)super.equip(equipName);
     }
 
+    @Override
+    public String toString() {
+        return "Viking";
+    }
 }

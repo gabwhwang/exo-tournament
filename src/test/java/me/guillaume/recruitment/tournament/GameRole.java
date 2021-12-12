@@ -22,6 +22,17 @@ public abstract class GameRole {
         return this;
     }
 
+    protected void hitPointAfterEachBlow(GameRole enemy){
+        //System.out.println(this.toString() + " blew by ======" + enemy.toString()  + " ===================================");
+        //System.out.println(this.toString() + " :have hitPoints before this blow : " + hitPoints);
+        if (buckle!=null&&!buckle.isDestroyed(enemy.getWeapon())&&buckle.cancalDamage()){
+            //System.out.println("protected by buck");
+        }else {
+            this.hitPoints = this.hitPoints-enemy.getDamge();
+        }
+        //System.out.println(this.toString() + " :have hitPoints after this blow : " + hitPoints);
+    }
+
     protected Buckle createBuckle() {
      return new Buckle();
     }
