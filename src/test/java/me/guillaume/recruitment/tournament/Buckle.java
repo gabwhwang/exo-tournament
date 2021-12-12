@@ -2,16 +2,14 @@ package me.guillaume.recruitment.tournament;
 
 public class Buckle {
     private boolean cancalDamge = true;
-    private int blowTmesByAxe = 0;
+    private int blewTimesByAxe = 0;
 
     public boolean cancalDamage(){
 
         if(cancalDamge){
             cancalDamge = false;
-            //System.out.println("cancale damage this time");
             return true;
         }else {
-            //System.out.println("not cancale damage this time");
             cancalDamge =true;
             return false;
         }
@@ -20,11 +18,9 @@ public class Buckle {
     public boolean isDestroyed(Weapon weapon){
         if(weapon instanceof Axe){
             if(!cancalDamge){
-                blowTmesByAxe++;
+                blewTimesByAxe++;
             }
-            //System.out.println("blowed by AXE time : " + blowTmesByAxe);
-            if(blowTmesByAxe > 3){
-                //System.out.println("buckle is destroyed!");
+            if(blewTimesByAxe > 3){
                 return true;
             }
         }

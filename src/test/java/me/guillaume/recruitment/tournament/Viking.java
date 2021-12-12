@@ -2,8 +2,9 @@ package me.guillaume.recruitment.tournament;
 
 public class Viking extends GameRole{
 
+    private final int INIT_VIKING_HITPOINTS=120;
     public Viking() {
-        setHitPoints(120);
+        setHitPoints(INIT_VIKING_HITPOINTS);
         setWeapon(new Axe());
     }
 

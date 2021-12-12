@@ -1,16 +1,14 @@
 package me.guillaume.recruitment.tournament;
 
 public class GreatSword extends Weapon {
-    private final int damage = 12;
-    private int blewTmesByGreatSword = 0;
+    private final int DAMAGE_GREATSWORD = 12;
 
     @Override
     public int getDamage() {
-        blewTmesByGreatSword++;
-        if(blewTmesByGreatSword==3){
-            blewTmesByGreatSword = 0;
+
+        if(getBlewTimer() %3 ==0){
             return 0;
         }
-        return damage;
+        return DAMAGE_GREATSWORD;
     }
 }

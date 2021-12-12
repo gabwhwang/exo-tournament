@@ -3,10 +3,11 @@ package me.guillaume.recruitment.tournament;
 public abstract class GameRole {
 
     private int hitPoints;
-
+    private double berserkThresold;
     private Weapon weapon;
     private Buckle buckle;
     private boolean equipedByArmor = false;
+    private boolean isBerserk = false;
 
     public int hitPoints(){
         return this.hitPoints<0? 0 : this.hitPoints;
@@ -16,6 +17,12 @@ public abstract class GameRole {
         int damage = this.weapon.getDamage();
         if(equipedByArmor){
             damage = this.weapon.getDamage() >=1 ?this.weapon.getDamage()-1 : 0 ;
+        }
+        if(isBerserk){
+            if(this.hitPoints<berserkThresold){
+                damage = damage + damage;
+            }
+
         }
         return damage;
     };
@@ -30,21 +37,17 @@ public abstract class GameRole {
         return this;
     }
 
-
-
     protected void hitPointAfterEachBlow(GameRole enemy){
+        getWeapon().increBlewtimer();
         int damageByEnemy = enemy.getDamge();
-        //System.out.println(this.toString() + " blew by ======" + enemy.toString()  + " ===================================");
-        //System.out.println(this.toString() + " :have hitPoints before this blow : " + hitPoints);
-        //System.out.println(enemy.toString() + " :give demage : " + damageByEnemy);
 
         if (buckle!=null&&!buckle.isDestroyed(enemy.getWeapon())&&buckle.cancalDamage()){
             if(damageByEnemy<=0){
                 buckle.setCancalDamge(true);
             }
-            //System.out.println("protected by buck");
+
         } else if (equipedByArmor){
-            //System.out.println("protected by armor");
+
             if(damageByEnemy>=3){
                 this.hitPoints = this.hitPoints-(damageByEnemy-3);
             }
@@ -52,7 +55,6 @@ public abstract class GameRole {
         }else{
             this.hitPoints = this.hitPoints-damageByEnemy;
         }
-        //System.out.println(this.toString() + " :have hitPoints after this blow : " + hitPoints);
     }
 
     protected Buckle createBuckle() {
@@ -71,4 +73,15 @@ public abstract class GameRole {
         this.hitPoints = hitPoints;
     }
 
+    public boolean isBerserk() {
+        return isBerserk;
+    }
+
+    public void setBerserk(boolean berserk) {
+        isBerserk = berserk;
+    }
+
+    public void setBerserkThresold(double berserkThresold) {
+        this.berserkThresold = berserkThresold;
+    }
 }

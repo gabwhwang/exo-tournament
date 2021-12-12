@@ -1,10 +1,10 @@
 package me.guillaume.recruitment.tournament;
 
 public class Axe extends Weapon{
-    private final int damage = 6;
+    private final int DAMAGE_AXE = 6;
 
     @Override
     public int getDamage() {
-        return damage;
+        return DAMAGE_AXE;
     }
 }
