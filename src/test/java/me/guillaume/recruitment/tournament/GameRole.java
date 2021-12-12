@@ -1,7 +1,9 @@
 package me.guillaume.recruitment.tournament;
 
-public interface GameRole {
-    public int hitPoints();
+public abstract class GameRole {
 
-    GameRole equip(String buckler);
+
+    public abstract int hitPoints();
+
+    protected abstract int getDamge();
 }
