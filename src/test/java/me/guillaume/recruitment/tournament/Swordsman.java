@@ -13,10 +13,7 @@ public class Swordsman extends GameRole{
             this.hitPointAfterEachBlow(role);
         }
 
-
     }
-
-
 
     @Override
     public Swordsman equip(String equipName) {

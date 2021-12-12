@@ -30,4 +30,8 @@ public class Buckle {
         }
         return false;
     }
+
+    public void setCancalDamge(boolean cancalDamge) {
+        this.cancalDamge = cancalDamge;
+    }
 }
