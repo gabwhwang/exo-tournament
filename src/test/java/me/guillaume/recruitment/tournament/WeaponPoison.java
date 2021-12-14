@@ -6,9 +6,13 @@ public class WeaponPoison extends Weapon{
     private static final int POISON_EFFET_TIME = 2;
     private Weapon weaponPure;
 
+    public WeaponPoison(Weapon weaponPure) {
+        this.weaponPure = weaponPure;
+    }
+
     @Override
     public int getDamage() {
-        if(getBlewTimer()<= POISON_EFFET_TIME){
+        if(getBlewTimer()< POISON_EFFET_TIME){
             return weaponPure.getDamage()+POISON_DAMAGE;
         }
         return weaponPure.getDamage();

@@ -11,14 +11,16 @@ public class Swordsman extends GameRole{
     public Swordsman(String Vicious){
         if(Vicious.equals("Vicious")){
             setHitPoints(INIT_SWORDSMAN_HITPOINTS);
-            WeaponPoison weaponPoison = new WeaponPoison();
-            weaponPoison.setWeaponPure(new Sword());
-            setWeapon(weaponPoison);
+            setWeapon(new Sword());
+            setVicious(true);
         } //else create exception
 
     }
 
-    public void engage(GameRole role) {//engage method, to be complet later with the progress of test
+    public void engage(GameRole role) {
+        if(isVicious()){
+            setWeapon(new WeaponPoison(getWeapon()));
+        }
         while(this.hitPoints()>0&&role.hitPoints()>0){
             role.hitPointAfterEachBlow(this);
             if(role.hitPoints()>0){

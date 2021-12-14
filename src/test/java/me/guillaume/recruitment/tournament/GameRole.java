@@ -8,12 +8,14 @@ public abstract class GameRole {
     private Buckle buckle;
     private boolean equipedByArmor = false;
     private boolean isBerserk = false;
+    private boolean isVicious = false;
 
     public int hitPoints(){
         return this.hitPoints<0? 0 : this.hitPoints;
     };
 
     protected int getDamge(){
+
         int damage = this.weapon.getDamage();
         if(equipedByArmor){
             damage = this.weapon.getDamage() >=1 ?this.weapon.getDamage()-1 : 0 ;
@@ -33,21 +35,22 @@ public abstract class GameRole {
             break;
             case "armor" : this.equipedByArmor = true;
             break;
+            case "axe" : this.setWeapon(new Axe());
+            break;
         }
         return this;
     }
 
     protected void hitPointAfterEachBlow(GameRole enemy){
-        getWeapon().increBlewtimer();
-        int damageByEnemy = enemy.getDamge();
 
+        int damageByEnemy = enemy.getDamge();
+        getWeapon().increBlewtimer();
         if (buckle!=null&&!buckle.isDestroyed(enemy.getWeapon())&&buckle.cancalDamage()){
             if(damageByEnemy<=0){
                 buckle.setCancalDamge(true);
             }
 
         } else if (equipedByArmor){
-
             if(damageByEnemy>=3){
                 this.hitPoints = this.hitPoints-(damageByEnemy-3);
             }
@@ -83,5 +86,13 @@ public abstract class GameRole {
 
     public void setBerserkThresold(double berserkThresold) {
         this.berserkThresold = berserkThresold;
+    }
+
+    public boolean isVicious() {
+        return isVicious;
+    }
+
+    public void setVicious(boolean vicious) {
+        isVicious = vicious;
     }
 }
